@@ -21,26 +21,22 @@ class Pokegame extends React.Component {
       0
     );
 
-    const max = Math.max(sum1, sum2);
-    const min = Math.min(sum1, sum2);
+    const winnerString1 = sum1 > sum2 ? "Winner" : "Loser";
+    const winnerString2 = sum1 < sum2 ? "Winner" : "Loser";
 
     return (
       <div className="Pokegame">
-        <div className="Pokegame-loser">
-          <h2>Loser with : {min}xp</h2>
-          {min === sum1 ? (
-            <Pokedex pokeCards={arr1} />
-          ) : (
-            <Pokedex pokeCards={arr2} />
-          )}
+        <div className="hand1">
+          <h2 className={`Pokegame-title-${winnerString1}`}>
+            {winnerString1} with {sum1}xp
+          </h2>
+          <Pokedex pokeCards={arr1} />
         </div>
-        <div className="Pokegame-winner">
-          <h2>Winner with : {max}xp</h2>
-          {max === sum1 ? (
-            <Pokedex pokeCards={arr1} />
-          ) : (
-            <Pokedex pokeCards={arr2} />
-          )}
+        <div className="hand2">
+          <h2 className={`Pokegame-title-${winnerString2}`}>
+            {winnerString2} with {sum2}xp
+          </h2>
+          <Pokedex pokeCards={arr2} />
         </div>
       </div>
     );

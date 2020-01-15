@@ -1,9 +1,15 @@
 .Pokegame {
-  h2 {
-    color: rgb(139, 139, 139);
-  }
+  letter-spacing: 0.01px;
 }
 
-.Pokegame-winner {
+.hand2 {
   margin-top: 30px;
+}
+
+.Pokegame-title-Winner {
+  color: #4caf50;
+}
+
+.Pokegame-title-Loser {
+  color: #e91e63;
 }
