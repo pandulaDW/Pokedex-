@@ -3,33 +3,23 @@ import pokeData from "./dev-data";
 
 import Pokedex from "../Pokedex/pokedex.component";
 import "./pokegame.styles.scss";
-
-const shuffle_array = array => {
-  let m = array.length;
-
-  while (m) {
-    let i = Math.floor(Math.random() * m--);
-    let t = array[m];
-    array[m] = array[i];
-    array[i] = t;
-  }
-
-  return array;
-};
+import shuffle_array from "../../utilities";
 
 class Pokegame extends React.Component {
   render() {
     const shuffledArray = shuffle_array(pokeData);
+    const arr1 = shuffledArray.slice(0, 4);
+    const arr2 = shuffledArray.slice(4);
 
-    const sum1 = shuffledArray
-      .slice(0, 4)
-      .map(el => el.base_experience)
-      .reduce((el1, el2) => el1 + el2);
+    const sum1 = arr1.reduce(
+      (exp, pokemon) => exp + pokemon.base_experience,
+      0
+    );
 
-    const sum2 = shuffledArray
-      .slice(4)
-      .map(el => el.base_experience)
-      .reduce((el1, el2) => el1 + el2);
+    const sum2 = arr2.reduce(
+      (exp, pokemon) => exp + pokemon.base_experience,
+      0
+    );
 
     const max = Math.max(sum1, sum2);
     const min = Math.min(sum1, sum2);
@@ -39,17 +29,17 @@ class Pokegame extends React.Component {
         <div className="Pokegame-loser">
           <h2>Loser with : {min}xp</h2>
           {min === sum1 ? (
-            <Pokedex pokeCards={shuffledArray.slice(0, 4)} />
+            <Pokedex pokeCards={arr1} />
           ) : (
-            <Pokedex pokeCards={shuffledArray.slice(4)} />
+            <Pokedex pokeCards={arr2} />
           )}
         </div>
         <div className="Pokegame-winner">
           <h2>Winner with : {max}xp</h2>
           {max === sum1 ? (
-            <Pokedex pokeCards={shuffledArray.slice(0, 4)} />
+            <Pokedex pokeCards={arr1} />
           ) : (
-            <Pokedex pokeCards={shuffledArray.slice(4)} />
+            <Pokedex pokeCards={arr2} />
           )}
         </div>
       </div>
