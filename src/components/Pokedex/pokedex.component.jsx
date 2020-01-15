@@ -5,7 +5,7 @@ import "./pokedex.styles.scss";
 class Pokedex extends React.Component {
   render() {
     const pokeCards = this.props.pokeCards.map(el => (
-      <Pokecard character={el} />
+      <Pokecard character={el} key={el.id} />
     ));
     return <div className="Pokedex">{pokeCards}</div>;
   }
